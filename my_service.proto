@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package mypackage;
+
+service MyService {
+  // A Bidirectional streaming RPC.
+  rpc MyRpc (stream Message) returns (stream Message) {}
+}
+
+message Message {
+  string message = 1;
+}
