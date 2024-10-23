@@ -10,18 +10,24 @@ logging.basicConfig(level=logging.DEBUG, format=LOG_FORMATS)
 class MyServiceServicer(my_service_pb2_grpc.MyServiceServicer):
 
     def MyRpc(self, request_iterator, context):
-        logging.info(f"RPC - started")
+        logging.info(f" ===== RPC - started  =====")
 
-        # def on_rpc_done():
-        #     logging.info(f"RPC - finished 2")
+        def on_rpc_done():
+            logging.info(f"RPC finished 4 - callback")
 
-        # context.add_callback(on_rpc_done)
+        context.add_callback(on_rpc_done)
 
-        for message in request_iterator:
-            logging.info(f"Received message from client: {message.message}")
-        yield my_service_pb2.Message(message="finish")
+        try:
+            for message in request_iterator:
+                logging.info(f"Received message from client: {message.message}")
+        except grpc.RpcError as e:
+            logging.info(f"RPC finished 2 - except")
+            logging.debug((f"RPC Error: {e}"))
+        finally:
+            logging.info(f"RPC finished 3 - finally")
 
-        logging.info(f"RPC - finished 1")
+        logging.info(f"RPC finished 1 - regular")
+
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
