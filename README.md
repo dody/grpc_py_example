@@ -1,4 +1,4 @@
-# My gRPC Service
+# Example bidirectional gRPC streaming service
 
 This project implements a gRPC server and client using bidirectional streaming. The server receives messages from the client and logs them.
 
@@ -40,4 +40,12 @@ To start the gRPC server, run:
 
 ```bash
 python server.py
+```
+
+## Running the client
+
+To start the gRPC server, run:
+
+```bash
+python client.py
 ```
