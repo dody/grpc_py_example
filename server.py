@@ -28,6 +28,8 @@ class MyServiceServicer(my_service_pb2_grpc.MyServiceServicer):
 
         logging.info(f"RPC finished 1 - regular")
 
+        if False:
+            yield
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
