@@ -4,7 +4,7 @@ This project implements a gRPC server and client using bidirectional streaming. 
 
 ## Requirements
 
-- gRPC dependencies listed in `requirements.txt`
+- gRPC dependencies listed in `Requirements.txt`
 
 ## Installation
 
